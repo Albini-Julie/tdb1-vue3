@@ -7,8 +7,14 @@
     <ul>
       <li>
         <router-link class="text-red-600 underline" to="/">
-          lien vers
-          <code class="font-mono">/src/pages/index.vue</code>
+          Accueil
+          
+        </router-link>
+      </li>
+      <li>
+      <router-link class="text-red-600 underline" to="/simple">
+          Simple
+          
         </router-link>
       </li>
     </ul>
@@ -19,5 +25,4 @@
 </template>
 
 <script setup lang="ts">
-import { Bars3Icon } from '@heroicons/vue/20/solid'
 </script>
