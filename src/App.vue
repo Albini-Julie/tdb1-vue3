@@ -40,6 +40,15 @@
           </router-link>
         
         </li>
+
+        <li>
+        
+        <router-link class="text-red-600 underline" to="/edit/new">
+            New
+            
+          </router-link>
+        
+        </li>
     </ul>
   </nav>
 
