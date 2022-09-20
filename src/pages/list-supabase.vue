@@ -6,7 +6,9 @@ const maisons = []; // à remplacer par l'appel à Supabase
 
 let { data: maison, error } = await supabase
   .from('maison')
-  .select('*')
+  .select('*');
+
+console.log(maison)
 </script>
     
 <template>
