@@ -10,16 +10,24 @@ const router = useRouter();
 // c'est l'objet qui doit être réactif, pas ses props
 const maison = ref({});
 
+const props = defineProps(["id"]);
+if (props.id) {
+ // On charge les données de la maison
+ let { data, error } = await supabase
+ .from("maison")
+ .select("*")
+ .eq("id_maison", props.id);
+ if (error) console.log("n'a pas pu charger le table Maison :", error);
+ else maison.value = (data as any[])[0]};
 
-
-async function upsertMaison(dataForm, node) {
+ async function upsertMaison(dataForm, node) {
  const { data, error } = await supabase.from("maison").upsert(dataForm);
  if (error) node.setErrors([error.message])
  else {
  node.setErrors([]);
  router.push({ name: "edit-id", params: { id: data[0].id_maison } });
  }
-}
+};
 </script>
 
 <template>
