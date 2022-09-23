@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { DefineComponent } from "vue";
 import Formulaire from "../../components/FormulaireMaison.vue";
 
 const props = defineProps({
@@ -10,7 +9,7 @@ const props = defineProps({
 
 <template>
         <div class="p-2">
-        <h2 class="text-2xl font-bold mb-5">New</h2>
+        <h2 class="text-2xl font-bold mb-5">Fiche récapitulative de la maison</h2>
         <Formulaire :id="id"/>
     </div>
 </template>
