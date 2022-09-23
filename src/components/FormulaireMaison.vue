@@ -3,15 +3,22 @@ import { checkbox } from "@formkit/inputs";
 import { ref } from "@vue/reactivity";
 import Card from "../components/card.vue";
 import { supabase} from "../supabase";
+import { useRouter } from "vue-router";
+const router = useRouter();
 //On fait une variable réactive qui référence les données
 //ATTENTION : faire une Ref pas une Réactive car :
 // c'est l'objet qui doit être réactif, pas ses props
 const maison = ref({});
 
 
+
 async function upsertMaison(dataForm, node) {
  const { data, error } = await supabase.from("maison").upsert(dataForm);
  if (error) node.setErrors([error.message])
+ else {
+ node.setErrors([]);
+ router.push({ name: "edit-id", params: { id: data[0].id_maison } });
+ }
 }
 </script>
 
@@ -30,7 +37,6 @@ async function upsertMaison(dataForm, node) {
  },
 }">
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="nom" label="Nom" placeholder="nom de la maison"/>
-                <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="id_maison" label="Id" placeholder="id de la maison"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="prix" label="Prix" type="number" placeholder="Prix de la maison"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="bed" type="text" label="Chambres" placeholder="Nombre de chambre"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="bath" type="text" label="Salles de bain" placeholder="Nombre de salle de bain"/>
