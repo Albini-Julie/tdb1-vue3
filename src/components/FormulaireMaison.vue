@@ -30,6 +30,7 @@ async function upsertMaison(dataForm, node) {
  },
 }">
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="nom" label="Nom" placeholder="nom de la maison"/>
+                <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="id_maison" label="Id" placeholder="id de la maison"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="prix" label="Prix" type="number" placeholder="Prix de la maison"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="bed" type="text" label="Chambres" placeholder="Nombre de chambre"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="bath" type="text" label="Salles de bain" placeholder="Nombre de salle de bain"/>
