@@ -70,6 +70,15 @@
 
         <li>
         
+        <router-link class="text-red-600 underline" to="/edit/new_agent">
+            Nouvel agent
+            
+          </router-link>
+        
+        </li>
+
+        <li>
+        
         <router-link class="text-red-600 underline" to="/list-supabase">
             liste-supabase
             
