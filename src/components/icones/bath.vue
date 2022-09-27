@@ -5,7 +5,7 @@
   viewBox="0 0 21 20"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class="flex-grow-0 flex-shrink-0 w-5 h-5 relative"
+  class="flex-grow-0 flex-shrink-0 w-5 h-5 "
   preserveAspectRatio="xMidYMid meet"
 >
   <path

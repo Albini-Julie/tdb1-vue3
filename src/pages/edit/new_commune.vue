@@ -5,7 +5,9 @@ import FormulaireCommune from "../../components/FormulaireCommune.vue";
 
 <template>
         <div class="p-2">
-        <h2 class="text-2xl font-bold mb-5">Nouvelle Commune</h2>
+        <h2 class="text-2xl font-bold flex-wrap flex justify-center mb-8">Nouvelle Commune</h2>
+        <div class="w-1/2 m-auto">
         <FormulaireCommune />
+        </div>
     </div>
 </template>
