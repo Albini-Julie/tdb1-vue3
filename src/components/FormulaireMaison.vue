@@ -58,6 +58,11 @@ const optionsQuartier = dataQuartierCommune?.map((quartier) => ({
   value: quartier.code_Quartier,
   label: quartier.libelle_Quartier,
 }));
+
+const optionsAgent = dataAllAgent?.map((agent) => ({
+  value: agent.id_agent,
+  label: agent.last_name,
+}));
 </script>
 
 <template>
@@ -100,6 +105,15 @@ const optionsQuartier = dataQuartierCommune?.map((quartier) => ({
                     name="code_Quartier"
                     label="Quartier"
                     :options="optionsQuartier"
+                    wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs"
+                />
+
+                <option value="" :disabled="true">Choisir un agent...</option>
+                <FormKit
+                    type="select"
+                    name="id_agent"
+                    label="Agent"
+                    :options="optionsAgent"
                     wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs"
                 />
                 
