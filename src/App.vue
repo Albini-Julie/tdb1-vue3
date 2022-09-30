@@ -67,7 +67,7 @@
 
         <li class="mt-5">
         
-        <router-link class="" to="/edit/new_quartier">
+        <router-link class="" to="/quartier/new_quartier">
             Nouveau quartier
             
           </router-link>
