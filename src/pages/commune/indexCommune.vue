@@ -29,7 +29,7 @@
               <RouterLink
                 :to="{
                   name: 'commune-id',
-                  params: { id: libelle_Commune.code_Commune },
+                  params: { id: libelle_Commune },
                 }"
               >{{ libelle_Commune }}
               </RouterLink>
