@@ -4,11 +4,26 @@ import { ref } from "@vue/reactivity";
 import Card from "../components/card.vue";
 import { supabase} from "../supabase";
 import { useRouter } from "vue-router";
+import {groupBy} from 'Lodash';
+import {
+    Disclosure,
+    DisclosureButton,
+    DisclosurePanel,
+  } from '@headlessui/vue'
+    
+  const { data, error } = await supabase.from("quartiercommune").select("*");
+    if (error) console.log("n'a pas pu charger la table quartiercommune :", error);
+
+    
+    
+
 const router = useRouter();
 //On fait une variable réactive qui référence les données
 //ATTENTION : faire une Ref pas une Réactive car :
 // c'est l'objet qui doit être réactif, pas ses props
 const maison = ref({});
+
+
 
 const props = defineProps(["id"]);
 if (props.id) {
@@ -28,6 +43,21 @@ if (props.id) {
  router.push({ name: "edit-id", params: { id: data[0].id_maison } });
  }
 };
+
+const { data: dataQuartierCommune } = await supabase
+  .from("quartiercommune")
+  .select("*");
+if (error) console.log("n'a pas pu charger la vue quartiercommune :", error);
+
+const { data: dataAllAgent } = await supabase
+  .from("allagent")
+  .select("*");
+if (error) console.log("n'a pas pu charger la vue Allagent :", error);
+
+const optionsQuartier = dataQuartierCommune?.map((quartier) => ({
+  value: quartier.code_Quartier,
+  label: quartier.libelle_Quartier,
+}));
 </script>
 
 <template>
@@ -39,7 +69,7 @@ if (props.id) {
         </div>
         <div class="p-2">
             <!-- On passe la "ref" à FromKit-->
-            <FormKit type="form" @submit="upsertMaison" v-model="maison" submit-label="Envoyer" :submit-attrs="{ classes: { input: 'flex justify-center font-inter font-bold text-[20px] p-2 bg-indigo-500 text-white rounded' } }" :config="{classes: {
+            <FormKit type="form" @submit="upsertMaison" v-model="maison" submit-label="Envoyer" :submit-attrs="{ classes: { input: 'flex justify-center font-inter font-bold text-[20px] p-2 bg-indigo-500 text-white rounded mt-5' } }" :config="{classes: {
                     input: 'p-1 rounded border-indigo-500 shadow-sm border-2 hover:bg-indigo-100',
                     label: 'text-black font-inter font-semibold',
  },
@@ -51,8 +81,36 @@ if (props.id) {
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="size" type="text" label="Superficie" placeholder="Superfice de la maison"/>
                 <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="image" type="text" label="Image" placeholder="Image de la maison"/>
                 <FormKit wrapper-class="items-center flex flex-row-reverse my-3 justify-start gap-3 max-w-xs" name="préféré" label="Ajouter aux favoris" type="checkbox"/>
+
+
+
+                <!--<FormKit name="code_Quartier" label="Quartier" type="select">
+                    <optgroup v-for="(listeQuartier, libelle_Commune) in groupBy(data,'libelle_Commune')" :key="libelle_Commune" label={{libelle_Commune}}>     
+                        <option value="{{ quartierObject.libelle_Quartier }}" v-for="quartierObject in listeQuartier" :key="quartierObject.code_Quartier" :disabled="true">{{ quartierObject.libelle_Quartier }}</option>
+                    </optgroup>
+                </FormKit>
+
+                <FormKit name="id_agent" label="Agent" type="select">
+                        <option v-for="agent in allagent" :key="id_agent" value="{{ agent.last_name }}">{{ agent.last_name }}</option>
+                </FormKit>-->
+                
+                <option value="" :disabled="true">Choisir un quartier...</option>
+                <FormKit
+                    type="select"
+                    name="code_Quartier"
+                    label="Quartier"
+                    :options="optionsQuartier"
+                    wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs"
+                />
+                
                 
             </FormKit>
+
+            
+            
+
+            
+
         </div>
     </div>
 </template>

@@ -110,6 +110,15 @@
         
         </li>
 
+        <li class="mt-5">
+        
+        <router-link class="" to="/commune/indexCommune">
+            Liste Commune
+            
+          </router-link>
+        
+        </li>
+
         </div>
       </ul>
     </div>
