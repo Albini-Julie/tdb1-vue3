@@ -28,6 +28,17 @@ if (props.id) {
  .eq("code_Quartier", props.id);
  if (error) console.log("n'a pas pu charger le table Quartier :", error);
  else quartier.value = (data as any[])[0]};
+
+ const { data: listeCommune, error } = await supabase
+  .from("commune")
+  .select("*");
+if (error) console.log("n'a pas pu charger la table Commune :", error);
+// Les convertir par `map` en un tableau d'objets {value, label} pour FormKit
+const optionsCommune = listeCommune?.map((commune) => ({
+  value: commune.code_Commune,
+  label: commune.libelle_Commune,
+}));
+
     </script>
     
     <template>
@@ -42,6 +53,14 @@ if (props.id) {
                     <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="libelle_Quartier" label="Nom" placeholder="nom du quartier"/>
                     
                 </FormKit>
+
+                <!-- Affiche les communes avec comme valeur l'id de la relation -->
+                <FormKit
+                    type="select"
+                    name="code_Commune"
+                    label="Commune"
+                    :options="optionsCommune"
+                />
             </div>
         </div>
     </template>
