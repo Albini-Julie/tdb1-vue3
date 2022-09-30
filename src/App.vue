@@ -15,7 +15,7 @@
     <div class="fixed inset-0 translate-x-full motion-safe:transition-transform motion-safe:duration-1000"
     :class="['bg-gray-900 text-white', menuOuvert ? 'translate-x-0' : '',]">
     <div class="flex justify-center items-center">
-      <ul class="sm:flex ">
+      <ul class="sm:flex "  @click="menuOuvert = !menuOuvert ">
         <div class="flex flex-col mt-10">
           <router-link to="/">
           <h2 class="font-bold text-2xl">Agence Immobilirère</h2>
