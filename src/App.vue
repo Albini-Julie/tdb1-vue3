@@ -58,7 +58,7 @@
 
         <li class="mt-5">
         
-        <router-link class="" to="/edit/new_commune">
+        <router-link class="" to="/commune/new_commune">
             Nouvelle commune
             
           </router-link>
