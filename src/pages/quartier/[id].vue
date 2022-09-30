@@ -3,9 +3,12 @@
     const props = defineProps<{
       id: String;
     }>();
+
+    
     </script>
     <template>
       <div class="p-2">
         <FormulaireQuartier :id="id" />
+        
       </div>
     </template>
