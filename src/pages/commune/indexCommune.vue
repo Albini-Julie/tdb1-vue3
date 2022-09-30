@@ -1,31 +1,45 @@
 <script setup lang="ts">
-    import { supabase } from "../../supabase";
-    import {groupBy} from 'Lodash';
-    import {
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-  } from '@headlessui/vue'
-    const { data, error } = await supabase.from("commune").select("*");
-    if (error) console.log("n'a pas pu charger la table commune :", error);
+  import { supabase } from "../../supabase";
+  import {groupBy} from 'Lodash';
+  import {
+  Disclosure
+} from '@headlessui/vue'
+  const { data, error } = await supabase.from("allcommunes").select("*");
+  if (error) console.log("n'a pas pu charger la table allcommunes :", error);
 
-    
-    </script>
-    
-    <template>
-      <section class="flex flex-col">
-        <h3 class="text-2xl">Liste des Communes</h3>
   
-        <div
-            v-for="(libelle_Commune) in
-            commune.libelle_Commune"
+  </script>
+  
+  <template>
+    <section class="flex flex-col">
+      <h3 class="text-2xl">Liste des Communes</h3>
+    
+      <Disclosure
+            v-for="(listeQuartier, libelle_Commune) in groupBy(
+            data,
+            'libelle_Commune'
+            )" 
             :key="libelle_Commune"
         >
-        
 
-      </div>
-  
-  
         
-      </section>
-    </template>
+        <DisclosurePanel>
+          <ul>
+              <li>
+              <RouterLink
+                :to="{
+                  name: 'commune-id',
+                  params: { id: libelle_Commune.code_Commune },
+                }"
+              >{{ libelle_Commune }}
+              </RouterLink>
+              </li>
+          </ul>
+       </DisclosurePanel>
+
+</Disclosure>
+
+
+      
+    </section>
+  </template>
