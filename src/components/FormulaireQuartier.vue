@@ -42,7 +42,7 @@ const optionsCommune = listeCommune?.map((commune) => ({
 
 async function supprimerQuartier() {
   const { data, error } = await supabase
-    .from("Quartier")
+    .from("quartier")
     .delete()
     .match({ code_Quartier: quartier.value.code_Quartier });
   if (error) {
@@ -63,7 +63,7 @@ async function supprimerQuartier() {
         <div>
             <div class="p-2">
                 <!-- On passe la "ref" à FromKit-->
-                <FormKit type="form" @submit="upsertQuartier" submit-label="Envoyer" v-model="quartier" :submit-attrs="{ classes: { input: 'flex justify-center font-inter font-bold text-[20px] p-2 bg-indigo-500 text-white rounded' } }" :config="{classes: {
+                <FormKit type="form" @submit="upsertQuartier" submit-label="Envoyer" v-model="quartier" :submit-attrs="{ classes: { input: 'flex justify-center font-inter font-bold text-[20px] p-2 bg-indigo-500 text-white rounded my-5' } }" :config="{classes: {
                         input: 'p-1 rounded border-indigo-500 shadow-sm border-2 hover:bg-indigo-100',
                         label: 'text-black font-inter font-semibold',
      },
@@ -77,6 +77,7 @@ async function supprimerQuartier() {
                     name="code_Commune"
                     label="Commune"
                     :options="optionsCommune"
+                    
                 />
             </FormKit>
 
@@ -85,7 +86,7 @@ async function supprimerQuartier() {
         type="button"
         v-if="quartier.code_Quartier"
         @click="($refs.dialogSupprimer as any).showModal()"
-        class="focus-style justify-self-end rounded-md bg-red-500 p-2 shadow-sm"
+        class="focus-style justify-self-end rounded-md text-[20px] bg-red-500 p-2 font-inter font-bold text-white shadow-sm"
       >
         Supprimer l'offre
       </button>
