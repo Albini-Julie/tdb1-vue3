@@ -37,7 +37,13 @@
               v-for="quartierObject in listeQuartier"
               :key="quartierObject.code_Quartier"
               >
-              {{quartierObject.libelle_Quartier}}
+              <RouterLink
+                :to="{
+                  name: 'quartier-id',
+                  params: { id: quartierObject.code_Quartier },
+                }"
+              >{{ quartierObject.libelle_Quartier }}
+              </RouterLink>
               </li>
           </ul>
        </DisclosurePanel>
