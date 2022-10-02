@@ -119,6 +119,14 @@
         
         </li>
 
+        <li class="mt-5">
+
+        <router-link class="" to="/agent/indexAgent">
+            Liste agents
+            
+          </router-link>
+        
+        </li>
         </div>
       </ul>
     </div>
