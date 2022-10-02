@@ -45,6 +45,17 @@ if (props.id) {
     router.push("/agent/indexAgent");
   }
 }
+
+const { data: listeUsers, error } = await supabase
+  .from("users")
+  .select("*");
+if (error) console.log("n'a pas pu charger la table Users :", error);
+// Les convertir par `map` en un tableau d'objets {value, label} pour FormKit
+const optionsAgent = listeUsers?.map((users) => ({
+  value: users.id,
+  label: users.email,
+}));
+
     </script>
     
     <template>
@@ -58,8 +69,17 @@ if (props.id) {
     }">
                     <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="first_name" label="Prénom" placeholder="Prénom de l'agent"/>
                     <FormKit wrapper-class="items-center flex m-5 justify-start gap-3 max-w-xs" name="last_name" label="Nom" placeholder="Nom de l'agent"/>
+
+                    <FormKit
+                    type="select"
+                    name="id"
+                    label="Utilisateur"
+                    :options="optionsAgent"
                     
-                </FormKit>
+                />
+            </FormKit>
+                    
+            
             </div>
             <button
         type="button"
