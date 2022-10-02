@@ -15,7 +15,7 @@
       <h3 class="text-2xl">Liste des Communes</h3>
     
       <Disclosure
-            v-for="(listeQuartier, libelle_Commune) in groupBy(
+            v-for="(listeCommune, libelle_Commune) in groupBy(
             data,
             'libelle_Commune'
             )" 
@@ -25,13 +25,14 @@
         
         <DisclosurePanel>
           <ul>
-              <li>
+              <li v-for="CommuneObject in listeCommune"
+              :key="CommuneObject.code_Commune">
               <RouterLink
                 :to="{
                   name: 'commune-id',
-                  params: { id: libelle_Commune },
+                  params: { id: CommuneObject.code_Commune },
                 }"
-              >{{ libelle_Commune }}
+              >{{ CommuneObject.libelle_Commune }}
               </RouterLink>
               </li>
           </ul>

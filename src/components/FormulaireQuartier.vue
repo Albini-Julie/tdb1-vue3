@@ -53,7 +53,7 @@ async function supprimerQuartier() {
       error
     );
   } else {
-    router.push("/quartier");
+    router.push("/quartier/indexQuartier");
   }
 }
 
@@ -88,7 +88,7 @@ async function supprimerQuartier() {
         @click="($refs.dialogSupprimer as any).showModal()"
         class="focus-style justify-self-end rounded-md text-[20px] bg-red-500 p-2 font-inter font-bold text-white shadow-sm"
       >
-        Supprimer l'offre
+        Supprimer le quartier
       </button>
       <dialog
         ref="dialogSupprimer"
