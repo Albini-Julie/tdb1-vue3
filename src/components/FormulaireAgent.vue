@@ -47,7 +47,7 @@ if (props.id) {
 }
 
 const { data: listeUsers, error } = await supabase
-  .from("users")
+  .from("allusers")
   .select("*");
 if (error) console.log("n'a pas pu charger la table Users :", error);
 // Les convertir par `map` en un tableau d'objets {value, label} pour FormKit
